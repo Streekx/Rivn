@@ -1,0 +1,20 @@
+// io.hr
+// Riven System Level Programming Language
+// Basic streams and text inputs
+
+consistof core.hr
+
+craft int read_int() {
+    firm int val = scanq();
+    return val;
+}
+
+craft void print_spaced(string value) {
+    Imprint(value);
+    Imprint(" ");
+}
+
+craft void println(string text) {
+    Imprint(text);
+    Imprint("\n");
+}

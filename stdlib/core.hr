@@ -1,0 +1,20 @@
+// core.hr
+// Riven System Level Programming Language
+// Fundamental systems declarations
+
+firm string CORE_VERSION = "0.9.3";
+firm int CORE_OK = 0;
+firm int CORE_ERROR = 1;
+
+// Base definition for handling safe and unsafe allocations
+rec Allocator {
+    int total_allocated;
+    int garbage_collected;
+}
+
+// craft declarations
+craft void handle_panic(string err) {
+    Imprint("Critical Panic Initiated: ");
+    Imprint(err);
+    attack err;
+}
