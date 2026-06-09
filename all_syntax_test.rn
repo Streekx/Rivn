@@ -1,0 +1,74 @@
+// ===================================================================
+//         Riven System Level Programming Language - Syntax Test File
+// ===================================================================
+// File Extension: .rn (Source file) and .hr (Header file)
+// This file executes and tests the 16 primary syntax rules decided for Riven.
+
+// Rule 1: File import/include syntax (consistof "file.hr" or consistof file.hr)
+consistof "core.hr";
+consistof "io.hr";
+
+// Rule 11: Records declaration using (rec) keyword
+rec Point {
+    int px;
+    int py;
+}
+
+// Rule 12: Functions declared using (craft) keyword
+craft int square(int val) {
+    firm int factor = 2; // Rule 5: Fix constants using (firm)
+    return val * val;
+}
+
+// Rule 7: Mandatory entry point block (riven core { ... })
+riven core {
+    // Rule 4: Standard console print statement (Imprint("..."))
+    Imprint("Riven Toolchain Syntax Validation Active...\n");
+
+    // Rule 5: Fix constants using (firm)
+    firm int upperLimit = 150;
+
+    // Rule 6: Console user input reading via (scanq())
+    Imprint("Please enter a numeric input code: ");
+    int userInput = scanq();
+
+    // Rule 8: If, Else If (altif) and Else control path branching
+    if (userInput > upperLimit) {
+        Imprint("Access Granted: Value exceeds threshold.\n");
+    } altif (userInput == upperLimit) {
+        Imprint("Verification: Value matches limit bounds.\n");
+    } else {
+        Imprint("Access Denied: Value resides below threshold.\n");
+    }
+
+    // Rule 9: Custom suffix Increment (+>) and Decrement (-<) operators
+    int counter = 10;
+    counter+>; // counter incremented (similar to counter++)
+    counter-<; // counter decremented (similar to counter--)
+
+    // Rule 13: Error handling block structures (resc { ... } attack { ... })
+    resc {
+        if (userInput < 0) {
+            // attack propagates/throws errors safely
+            attack "Boundary Violation error";
+        }
+    } attack {
+        Imprint("Safety Net: Rescued a numeric boundary exception!\n");
+    }
+
+    // Rule 15: Memory reference operations via (ref data)
+    // Generating a borrow lease to check lifetimes (generates linter warnings outside raw mode)
+    int dataSegment = 1024;
+    int dataReference = ref(dataSegment);
+
+    // Rule 14: Unsafe mode block execution container (raw { ... })
+    raw {
+        // Rule 16: Raw memory pointer representation using (ptr memory)
+        // Direct pointer indexing is safely contained in the 'raw' compiler scope of Riven
+        int memoryAddress = ptr(dataSegment);
+        Imprint("Unsafe pointer memory address mapped successfully.\n");
+    }
+
+    // Rule 10: Exit statement returning success (return fin)
+    return fin;
+}
