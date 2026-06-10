@@ -60,14 +60,13 @@ riven core {
     // Generating a borrow lease to check lifetimes (generates linter warnings outside raw mode)
     int dataSegment = 1024;
     int dataReference = ref(dataSegment);
-
-    // Rule 14: Unsafe mode block execution container (raw { ... })
-    raw {
-        // Rule 16: Raw memory pointer representation using (ptr memory)
-        // Direct pointer indexing is safely contained in the 'raw' compiler scope of Riven
-        int memoryAddress = ptr(dataSegment);
-        Imprint("Unsafe pointer memory address mapped successfully.\n");
-    }
+// Rule 14: Unsafe mode block execution container (raw { ... })
+raw {
+    // Rule 16: Raw memory pointer representation using (ptr memory)
+    int safetySegment = 2048; // Naya variable
+    int memoryAddress = ptr(safetySegment); // dataSegment ki jagah safetySegment use karein
+    Imprint("Unsafe pointer memory address mapped successfully.\n");
+}
 
     // Rule 10: Exit statement returning success (return fin)
     return fin;
