@@ -79,6 +79,7 @@ std::shared_ptr<ASTNode> Parser::parseTopLevel() {
                 filename += peek(-1).value;
             }
         }
+        match(TokenType::SEMICOLON);
         return std::make_shared<ImportNode>(filename, loc);
     }
 
